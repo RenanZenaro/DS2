@@ -1,0 +1,75 @@
+// Online C# Editor for free
+// Write, Edit and Run your C# code using C# Online Compiler
+
+
+/* 
+        * CONVENÇÕES 
+        
+        1º Nome da variavel SEMPRE começa com letra minuscula.
+        
+        2º Funções e Métodos sempre possuem parenteses, geralmente começa com letra minuscula.
+        
+        3º Classes sempre começam com letra Maiuscula.
+        
+        *
+        */
+        
+        // Elabore um programa que:
+        // Sorteie um numero de 0 a 10;
+        // Solicite ao usuário em 3 tentativas qual numero ele acha que foi sorteado.
+        // Conte quantas tentativas o usuário está fazendo.
+        // Caso ele acerte, apresente o numero e a quantidade de tentativas.
+        // Caso ele não acerte nas 3 tentativas, avise que perdeu e informe o numero sorteado.
+        // Caso o usuário digite um numero que não esteja na faixa, solicite um novo numero e nao conte a tentativa.
+        
+using System;
+
+public class CriarNumeroRandomico
+{
+    public static void Main()
+    {
+        // Cria uma instância da classe Random
+        Random random = new Random();
+
+        // Sorteia um numero entre 0 e 10
+        int numeroEntre0e10 = random.Next(0, 11); 
+        
+        bool numeroValido = false;
+        // Cria uma variavel para o numero do usuario
+        int numero;
+        const int tentativasMaximas = 3;
+        // For para fazer os teste de tentativas
+        for (int tentativa = 1; tentativa <= tentativasMaximas; tentativa++)
+        {
+            Console.Write($"Digite um número entre 0 e 10: ");
+            string entrada = Console.ReadLine();
+
+            // converte a entrada para um número inteiro
+            if (int.TryParse(entrada, out numero))
+            {
+                // Verifica se o número está dentro do intervalo permitido
+                if (numero >= 0 && numero <= 10)
+                {
+                    if (numero = numeroEntre0e10){
+                    Console.WriteLine($"Parabens você acertou em {tentativa}: {numero}");
+                    numeroValido = true;
+                    break; // Sai do loop se o número for válido
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Número não esta entre 0 e 10. Tente novamente.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Por favor, digite um número inteiro.");
+            }
+        }
+        // Passou de 3 tentativas
+        if (!numeroValido)
+        {
+            Console.WriteLine("Você perdeu, o número sorteado foi {numeroEntre0e10}");
+        }
+    }
+}
