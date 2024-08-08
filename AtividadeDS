@@ -1,62 +1,51 @@
 using System;
 
-public class HelloWorld
+public class CriarNumeroAleatorio
 {
-    public static void Main(string[] args)
+    static void Main()
     {
-        /*
-        * CONVENÇÕES
-        
-        1ª Nome da variavel SEMPRE começa com letra minuscula.
-        
-        2ª Funções e Métodos sempre possuem parenteses, geralmente começa com letra minuscula.
-        
-        3ª Classes sempre começam com letra Maiuscula.
-        * 
-        */
-        
-        // Elabore um programa que:
-        // Sortei um numero de 0 a 10;
-        // Solicite ao usuário em 3 tentativas qual numero ele acha que foi sorteado.
-        // Conte quantas tentativas o usuario está fazendo.
-        // Caso ele acerte, apresente o numero e a quantidade de tentativas
-        // Caso ele não acerte nas 3 tentativas, avise que perdeu e informe o numero sorteado.
-        // Caso o usuario digite um numero que não esteja na faixa, solicite um novo numero e não conte a tentativa.
-        
-        // Instancia a classe que gera numero randomicos
+        // Cria uma instância da classe Random
         Random random = new Random();
-        // Gera um número aleatório de 0 a 10
-        int numeroAleatorio = random.Next(0, 11); 
-        int tentativas = 1;
-        Console.WriteLine($"=============== O GRANDE SORTEIO ================");
+
+        // Gera um número aleatório entre 0 (inclusive) e 10 (inclusivo)
+        int numeroAleatorio = random.Next(0, 11);
+    
+        Console.WriteLine("Numero Aleatorio Gerado: " + numeroAleatorio);
         
-        // Console.WriteLine($"Numero Sorteado: {numeroAleatorio}");
+        int tentativas = 3;
+        bool acerto = false;
+        int tentativaAcerto = 0; // Variável para armazenar a tentativa em que o número foi acertado
         
-        while(tentativas < 4){
-            Console.WriteLine($"Tente acertar o numero sorteado...");
-            Console.WriteLine($"Voce possui [ {4 - tentativas} ] tentativa(s)");
-            Console.Write($"Digite um numero de 0 a 10: ");
-            try{
-                int numeroDigitado = int.Parse(Console.ReadLine());
-                if(numeroDigitado > -1 && numeroDigitado < 11){
-                    if(numeroDigitado == numeroAleatorio){
-                        Console.WriteLine($"\n\nParabens!!!\nVocê acertou o número em [ {tentativas} ] tentativa(s)");
-                        tentativas = 4;
-                    }else{
-                         Console.WriteLine($"Errou, tente novamente!");
-                         
-                         if(tentativas == 3){
-                             Console.WriteLine($"\n\nPERDEUUUUUUU!!!!!");
-                         }
-                    }
-                    tentativas++;
-                }else{
-                    Console.WriteLine($"BURRO!!! Numero de 0 a 10!");
+        // Tenta adivinhar o número gerado dentro do número máximo de tentativas.
+        for (int i = 0; i < tentativas; i++)
+        {
+            Console.Write("Digite seu palpite: ");
+            string entrada = Console.ReadLine();
+
+            // Verifica se a entrada é um número válido
+            if (int.TryParse(entrada, out int palpite))
+            {
+                if (palpite == numeroAleatorio)
+                {
+                    Console.WriteLine($"Parabens! Voce acertou o numero gerado na {i + 1}° tentativa ");
+                    acerto = true; // Define a variável "acerto" como verdadeira quando o palpite está correto.
+                    tentativaAcerto = i + 1; // Armazena a tentativa em que o número foi acertado
+                    break; // Encerra o loop se o palpite estiver correto.
                 }
-            }catch(Exception e){
-                Console.WriteLine("INDIOTA, digite apenas numeros");
+                else
+                {
+                    Console.WriteLine("Palpite incorreto. Tente novamente.");
+                }
             }
-            Console.WriteLine("");
+            else
+            {
+                Console.WriteLine("Entrada invalida. Por favor, digite um numero.");
+            }
+        }
+        
+        if (!acerto)
+        {
+            Console.WriteLine($"Voce nao conseguiu adivinhar o numero. O numero correto era: {numeroAleatorio}");
         }
     }
 }
