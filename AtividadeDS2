@@ -1,0 +1,85 @@
+using System;
+using System.Linq;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        // Software de validação de senha
+        Console.Write("Digite uma senha:");
+        string senha = Console.ReadLine();
+
+        Console.Write("\nConfirme a senha:");
+        string confirmaSenha = Console.ReadLine();
+
+        if (senha == confirmaSenha)
+        {
+            ValidarSenha(senha);
+
+        }else {
+            Console.Write("Senhas nao conferem");
+        }
+    }
+
+    private string ValidarSenha(senhaP)
+    {
+        bool tamanhoValido = senhaP.Length >= 8;
+        bool contemNumero = senhaP.Any(char.IsDigit);
+        bool contemMaiuscula = senhaP.Any(char.IsUpper);
+
+        if (tamanhoValido && contemMaiuscula && contemNumero)
+        {
+            Console.WriteLine("Senha Valida!");
+        }
+        else
+        {
+            Console.WriteLine("Senha Invalida, inclua numeros e letras maiusculas!");
+        }
+    }
+}
+
+
+
+
+// using System;
+// using System.Linq;
+
+// public class Program
+// {
+//     public static void Main(string[] args)
+//     {
+
+//         // Software de validação de senha
+
+//         //Solicita ao usuário a senha
+//         Console.WriteLine("Qual sua senha?");
+//         string senha = Console.ReadLine();
+
+//         Console.WriteLine("Confirme sua senha!");
+//         string confirmarSenha = Console.ReadLine();
+
+//         // faz a validação de senhas iguais e se contem todas os caracteres especiais
+//         if (senha == confirmarSenha)
+//         {
+//             bool tamanhoValido = senha.Length >= 8;
+//             bool contemNumero = senha.Any(char.IsDigit);
+//             bool contemMaiuscula = senha.Any(char.IsUpper);
+
+//             if (tamanhoValido && contemMaiuscula && contemNumero)
+//             {
+//                 Console.WriteLine("Senha Válida!");
+//             }
+//             else
+//             {
+//                 Console.WriteLine("Senha Inválida!");
+//             }
+//         }
+//         else
+//         {
+//             Console.WriteLine("Senhas não são iguais, digite novamente!");
+//         }
+//         // testa se todos foram positivos
+
+
+//     }
+// }
